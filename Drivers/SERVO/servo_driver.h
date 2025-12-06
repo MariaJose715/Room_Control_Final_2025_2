@@ -6,6 +6,8 @@
 typedef struct {
     TIM_HandleTypeDef *htim;
     uint32_t channel;
+    uint16_t min_pulse; 
+    uint16_t max_pulse;
 } servo_handle_t;
 
 void servo_init(servo_handle_t *servo);
