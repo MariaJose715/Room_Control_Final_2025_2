@@ -1,9 +1,11 @@
 #ifndef RFID_DRIVER_H
 #define RFID_DRIVER_H
 
-#include "main.h"
+#include "stm32l4xx_hal.h"
+#include <stdint.h>
 #include <stdbool.h>
 
+/* Handler del módulo RFID */
 typedef struct {
     SPI_HandleTypeDef *hspi;
     GPIO_TypeDef *cs_port;
@@ -12,6 +14,7 @@ typedef struct {
     uint16_t rst_pin;
 } rfid_handle_t;
 
+/* Prototipos */
 void rfid_init(rfid_handle_t *rfid);
 bool rfid_is_card_present(rfid_handle_t *rfid);
 bool rfid_read_uid(rfid_handle_t *rfid, uint8_t *uid_out);

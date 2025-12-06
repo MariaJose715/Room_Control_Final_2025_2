@@ -1,6 +1,8 @@
 #include "rfid_driver.h"
 #include "stm32l4xx_hal.h"
 #include <string.h>
+#include "rfid_driver.h"
+
 
 #define PCD_IDLE        0x00
 #define PCD_TRANSCEIVE  0x0C
@@ -24,7 +26,8 @@ static inline void cs_high(rfid_handle_t *rfid) {
 }
 
 static void write_reg(rfid_handle_t *rfid, uint8_t reg, uint8_t val) {
-    uint8_t tx[2] = { (reg << 1) & 0x7E, val };
+ uint8_t tx[2] = { (reg << 1) & 0x7E, val };
+
     cs_low(rfid);
     HAL_SPI_Transmit(rfid->hspi, tx, 2, HAL_MAX_DELAY);
     cs_high(rfid);
